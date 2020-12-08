@@ -3,12 +3,16 @@ import {ConvictionSelect} from './convictions/convictionSelect.js'
 import { OfficerSelect } from './officers/officerSelect.js'
 import { NoteForm } from './notes/noteForm.js'
 import { saveNote } from './notes/noteProvider.js'
+import { ShowNoteButton } from './notes/showNotesButton.js'
+
 
 criminalList()
 ConvictionSelect()
 OfficerSelect()
 NoteForm()
-saveNote
+saveNote()
+ShowNoteButton()
+
 
 
 // What feature are we implementing?
