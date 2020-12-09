@@ -1,20 +1,8 @@
-.criminalsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+@import "./criminalCards/criminals.css";
+@import "./form/form.css";
+@import "./crimeDropDown/crimeSelect.css";
+@import "./showNotes/showNotes.css";
 
-.criminal {
-  border: 1px dotted black;
-  flex-basis: 30%;
-  margin: 15px 0px;
-}
 
-.criminalName {
-  padding-left: 20px;
-}
 
-.criminalList {
-  list-style: none;
-  padding-left: 20px;
-}
+

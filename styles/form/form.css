@@ -1,0 +1,17 @@
+.noteForm {
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+#author, #text, #suspect {
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#saveNote {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}

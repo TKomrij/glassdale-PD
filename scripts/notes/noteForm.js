@@ -33,10 +33,12 @@ eventHub.addEventListener("click", clickEvent => {
 // send the data to be stored in the db, via the api
 const render = () => {
     contentTarget.innerHTML = `
+    <div class="noteForm">
         <input type="text" id="author" placeholder="author name">
         <textarea id="text" placeholder="note text"></textarea>
         <input type="text" id="suspect" placeholder="suspect name">
         <button id="saveNote">Save Note</button>
+    </div>
     `
 }
 
