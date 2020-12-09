@@ -1,0 +1,20 @@
+.noteList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.note {
+  border: 1px solid black;
+  border-radius: 5px;
+  flex-basis: 30%;
+  margin-bottom: 20px;
+  padding: 10px 0px 10px 10px;
+}
+
+#showNotes {
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}

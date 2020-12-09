@@ -50,6 +50,17 @@ eventHub.addEventListener("officerSelected", event => {
       }
   )
 
+  // const alibiTarget = document.querySelector(".alibiContainer")
+  // eventHub.addEventListener("showAlibiClicked", event => {
+  //   export const Alibi = () => {
+  //     alibiTarget.innerHTML = `
+  //     <article class="alibiSection">
+  //       <div>${criminal.known_associates.name}</div>
+  //       <div>${criminal.known_associates.alibi}</div>
+  //     </article>
+  //     `
+  //   }
+  // })
 
 
 export const criminalList = () => {
