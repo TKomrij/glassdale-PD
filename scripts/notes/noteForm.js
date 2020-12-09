@@ -31,8 +31,6 @@ eventHub.addEventListener("click", clickEvent => {
 
 
 // send the data to be stored in the db, via the api
-
-
 const render = () => {
     contentTarget.innerHTML = `
         <input type="text" id="author" placeholder="author name">

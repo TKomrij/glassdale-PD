@@ -19,13 +19,12 @@ export const getNotes = () => {
 }
 
 export const saveNote = note => {
-    let stringifiedObj = JSON.stringify(note)
     return fetch('http://localhost:8088/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: stringifiedObj
+        body: JSON.stringify(note)
     })
     .then(getNotes)
     .then(dispatchStateChangeEvent)
