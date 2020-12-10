@@ -1,5 +1,20 @@
 const eventHub = document.querySelector(".container")
 
+
+eventHub.addEventListener('click', evt => {
+  if (!evt.target.id.startsWith('associates--')) {
+    return;
+  }
+
+  const idParts = evt.target.id.split('--');
+  const criminalId = parseInt(idParts[1]);
+
+  eventHub.dispatchEvent(new CustomEvent('associatesChosen', {
+    detail: { criminalId }
+  }));
+});
+
+
 export const Criminal = (criminal) => {
   return `
   <section class="criminal">
@@ -16,17 +31,3 @@ export const Criminal = (criminal) => {
   </section>
   `
 }
-
-
-eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id.startsWith("associates--")) {
-        let [tag, id] = clickEvent.target.id.split("--")
-        console.log("I did it!")
-        const customEvent = new CustomEvent("showAlibiClicked", {
-          detail: {
-            alibiButton: id
-          }
-        })
-        eventHub.dispatchEvent(customEvent)
-    }
-})
