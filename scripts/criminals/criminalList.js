@@ -2,6 +2,7 @@ import { getCriminals, useCriminals } from './criminalProvider.js'
 import {Criminal} from './criminal.js'
 import { useConvictions } from '../convictions/convictionProvider.js'
 import { useOfficers } from '../officers/officerProvider.js'
+import './associatesComponent.js';
 
 
 const criminalElement = document.querySelector(".criminalsContainer")
@@ -50,6 +51,30 @@ eventHub.addEventListener("officerSelected", event => {
       }
   )
 
+
+
+
+
+  
+  // eventHub.addEventListener("knownAssociatesClicked", event => {
+  //   if(event.detail.alibiButton !== "0") {
+
+    
+  //   const criminals = useCriminals()
+  //   // const criminal = criminals.find((criminal) => criminal.id === parseInt(event.detail.alibiButton))
+  
+  //   // const matchingAlibis = criminals.filter( (criminal) => criminal.id === criminal.id)
+  
+    
+  //   renderAssociates(criminals)
+  //           }
+  //       }
+  //   )
+    
+  
+  
+  
+  
   // const alibiTarget = document.querySelector(".alibiContainer")
   // eventHub.addEventListener("showAlibiClicked", event => {
   //   export const Alibi = () => {
@@ -67,7 +92,7 @@ export const criminalList = () => {
   getCriminals().then( 
     () => {
       let perps = useCriminals()
-      render(perps)
+            render(perps)
       
     }
   )
@@ -80,3 +105,12 @@ const render = (criminals) => {
   }
   criminalElement.innerHTML = criminalCards.join("")
 }
+
+// const renderAssociates = (criminals) => {
+//   const criminalElement = document.querySelector(".alibiContainer")
+//   let criminalCards = []
+//   for (const perp of criminals) {
+//     criminalCards.push(Associates(perp))
+//   }
+//   criminalElement.innerHTML = criminalCards.join("")
+// }
