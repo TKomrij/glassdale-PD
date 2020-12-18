@@ -5,6 +5,7 @@ import { NoteForm } from './notes/noteForm.js'
 import { ShowNoteButton } from './notes/showNotesButton.js'
 import "./criminals/associatesComponent.js"
 import "./notes/noteList.js"
+import "./criminals/associatesComponent.js"
 
 
 

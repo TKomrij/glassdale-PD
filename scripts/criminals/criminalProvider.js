@@ -7,6 +7,7 @@ export const getCriminals = () => {
         .then(
             parsedCriminals => {
                 criminals = parsedCriminals
+
             }
         )
 }
