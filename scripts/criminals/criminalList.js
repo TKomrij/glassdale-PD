@@ -52,42 +52,6 @@ eventHub.addEventListener("officerSelected", event => {
   )
 
 
-
-
-
-  
-  // eventHub.addEventListener("knownAssociatesClicked", event => {
-  //   if(event.detail.alibiButton !== "0") {
-
-    
-  //   const criminals = useCriminals()
-  //   // const criminal = criminals.find((criminal) => criminal.id === parseInt(event.detail.alibiButton))
-  
-  //   // const matchingAlibis = criminals.filter( (criminal) => criminal.id === criminal.id)
-  
-    
-  //   renderAssociates(criminals)
-  //           }
-  //       }
-  //   )
-    
-  
-  
-  
-  
-  // const alibiTarget = document.querySelector(".alibiContainer")
-  // eventHub.addEventListener("showAlibiClicked", event => {
-  //   export const Alibi = () => {
-  //     alibiTarget.innerHTML = `
-  //     <article class="alibiSection">
-  //       <div>${criminal.known_associates.name}</div>
-  //       <div>${criminal.known_associates.alibi}</div>
-  //     </article>
-  //     `
-  //   }
-  // })
-
-
 export const criminalList = () => {
   getCriminals().then( 
     () => {
@@ -106,11 +70,17 @@ const render = (criminals) => {
   criminalElement.innerHTML = criminalCards.join("")
 }
 
-// const renderAssociates = (criminals) => {
-//   const criminalElement = document.querySelector(".alibiContainer")
-//   let criminalCards = []
-//   for (const perp of criminals) {
-//     criminalCards.push(Associates(perp))
-//   }
-//   criminalElement.innerHTML = criminalCards.join("")
-// }
+
+eventHub.addEventListener('click', (clickEvent)=> {
+  if (!clickEvent.target.id.startsWith('associates--')) {
+    return;
+  }
+  const [unused, criminalId] = clickEvent.target.id.split('--');
+
+  const customEvent = new CustomEvent('criminalDetailClicked', {
+    detail: {
+      criminalId: criminalId
+    }
+  })
+  eventHub.dispatchEvent(customEvent);
+})
