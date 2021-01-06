@@ -1,27 +1,42 @@
-import { getCriminals, useCriminals } from "./CriminalProvider.js";
+import { useCriminals } from "./criminalProvider.js";
 
-const eventHub = document.querySelector('.container');
-const targetDialog = document.querySelector('.dialog-container');
+const eventHub = document.querySelector(".container");
+const targetTargetContainer = document.querySelector(".dialogue-container");
 
-eventHub.addEventListener('dialogueClicked', (event) => {
-  const criminals = useCriminals();
-  const criminalToDetail = event.detail.criminalId;
-  const criminalObject = criminals.find((criminal)=>criminal.id === parseInt(criminalToDetail));
-  
-  const attractionHTML = CriminalDetailsHTMLgenerator(criminalObject);
-  targetDialog.innerHTML = attractionHTML;
-  targetDialog.classList.add('criminal-dialog');
-  targetDialog.showModal();
+// CriminalAssociatesDialog renders the dialog element to the DOM for the specific criminal when invoked.
+const CriminalAssociatesDialog = (criminalObject) => {
+    const [firstName, lastName] = criminalObject.name.split(" ");
+    targetTargetContainer.innerHTML = `
+        <dialog id="dialog">
+            <h4><span class="bold">Name</span>: ${lastName}, ${firstName}</h4>
+            <ul>
+            ${criminalObject.known_associates.map(c => {
+        return `<li>Associate: ${c.name} | Alibi: ${c.alibi}</li>`
+    }).join("")
+        }
+            </ul>
+            <button class="button--close" id="dialog--close">Close</button>
+        </dialog>
+        `
+}
+
+// Listens for the custom event, assiciatesButtonClicked, to render and open the dialog box.
+eventHub.addEventListener("assiciatesButtonClicked", e => {
+    const criminalsArray = useCriminals();
+    const criminalId = parseInt(e.detail.criminal);
+    const foundCriminal = criminalsArray.find(c => c.id === criminalId)
+    CriminalAssociatesDialog(foundCriminal);
+    const theDialog = document.querySelector(".dialog");
+    theDialog.showModal();
 });
 
-eventHub.addEventListener('click', (event)=> {
-  if (event.target.id === 'closeModal') {
-    targetDialog.close();
-    targetDialog.classList.remove('criminal-dialog');
-  }
-})
-
-window.onclick = function(event) {
-  if (event.target === targetDialog)
-    targetDialog.close();
-}
+// Listens for a "click" event on the "Close" button and closes the dialog box.
+targetTargetContainer.addEventListener(
+    "click",
+    e => {
+        if (e.target.id === "dialog--close") {
+            const theDialog = document.querySelector(".dialog");
+            theDialog.close();
+        }
+    }
+)

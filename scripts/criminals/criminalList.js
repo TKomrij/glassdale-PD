@@ -2,7 +2,7 @@ import { getCriminals, useCriminals } from './criminalProvider.js'
 import {Criminal} from './criminal.js'
 import { useConvictions } from '../convictions/convictionProvider.js'
 import { useOfficers } from '../officers/officerProvider.js'
-import './associatesComponent.js';
+// import {associateAlibisHTMLgenerator} from './associatesComponent.js'
 
 
 const criminalElement = document.querySelector(".criminalsContainer")
@@ -69,18 +69,3 @@ const render = (criminals) => {
   }
   criminalElement.innerHTML = criminalCards.join("")
 }
-
-
-eventHub.addEventListener('click', (clickEvent)=> {
-  if (!clickEvent.target.id.startsWith('associates--')) {
-    return;
-  }
-  const [unused, criminalId] = clickEvent.target.id.split('--');
-
-  const customEvent = new CustomEvent('criminalDetailClicked', {
-    detail: {
-      criminalId: criminalId
-    }
-  })
-  eventHub.dispatchEvent(customEvent);
-})

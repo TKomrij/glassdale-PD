@@ -1,18 +1,5 @@
-const eventHub = document.querySelector(".container")
-
-
-eventHub.addEventListener('click', evt => {
-  if (!evt.target.id.startsWith('associates--')) {
-    return;
-  }
-
-  const idParts = evt.target.id.split('--');
-  const criminalId = parseInt(idParts[1]);
-
-  eventHub.dispatchEvent(new CustomEvent('associatesChosen', {
-    detail: { criminalId }
-  }));
-});
+const eventHub = document.querySelector(".container");
+const targetListContainer = document.querySelector(".dialogue-container");
 
 
 export const Criminal = (criminal) => {
@@ -31,3 +18,28 @@ export const Criminal = (criminal) => {
   </section>
   `
 }
+
+
+/*
+ *  Listens for a "click" event and dispatches the custom event, assiciatesButtonClicked,
+ *  to the eventHub to open a dialog box with a list of known associates and a corresponding alibi.
+*/
+targetListContainer.addEventListener("click", e => {
+      if (e.target.id.startsWith("associates--")) {
+          const [prefix, chosenCriminalId] = e.target.id.split("--");
+          const openDialogBox = new CustomEvent("assiciatesButtonClicked", {
+              detail: {
+                  criminal: chosenCriminalId
+              }
+          });
+          eventHub.dispatchEvent(openDialogBox);
+      };
+  });
+/*
+*   Listens for a "click" event listener on the button element that starts with (#hideCriminal--),
+*   which sets the corresponding criminal card to display: none, by adding the class "hidden".
+*/
+targetListContainer.addEventListener("click", e => {
+  if (e.target.id.startsWith("hideCriminal--"))
+      e.target.parentElement.remove();
+});
