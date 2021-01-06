@@ -3,58 +3,16 @@
     {
       "author": "Tatiane",
       "text": "buga boo",
-      "suspect": "austin",
+      "criminalId": 1,
       "timestamp": 1607450081112,
       "id": 1
     },
     {
-      "author": "teetle",
-      "text": "gotcha",
-      "suspect": "cricket",
-      "timestamp": 1607455069356,
-      "id": 2
-    },
-    {
       "author": "Austin",
-      "text": "bickle",
-      "suspect": "crimbleton",
-      "timestamp": 1607526919092,
-      "id": 3
-    },
-    {
-      "author": "austin",
-      "text": "trickle",
-      "suspect": "snickle",
-      "timestamp": 1607527106940,
-      "id": 4
-    },
-    {
-      "author": "slickle ",
-      "text": "hickle",
-      "suspect": "jickle",
-      "timestamp": 1607528335130,
-      "id": 5
-    },
-    {
-      "author": "jhgjhg",
-      "text": "ugiu",
-      "suspect": "kjkjb",
-      "timestamp": 1607528886484,
-      "id": 6
-    },
-    {
-      "author": "kljnlk",
-      "text": "lknlk",
-      "suspect": "kn",
-      "timestamp": 1607529389068,
-      "id": 7
-    },
-    {
-      "author": "lkjdfs",
-      "text": "dfssa",
-      "suspect": "dfasdf",
-      "timestamp": 1607530265862,
-      "id": 8
+      "text": "beetle juice",
+      "criminalId": 5,
+      "timestamp": 1607450081112,
+      "id": 1
     }
   ]
 }

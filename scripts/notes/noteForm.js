@@ -37,6 +37,9 @@ const render = () => {
         <input type="text" id="author" placeholder="author name">
         <textarea id="text" placeholder="note text"></textarea>
         <input type="text" id="suspect" placeholder="suspect name">
+        <select id="noteForm--criminal" class="criminalSelect">
+      
+        </select>
         <button id="saveNote">Save Note</button>
     </div>
     `
