@@ -1,4 +1,5 @@
 import {saveNote} from './noteProvider.js'
+import { useCriminals, getCriminals } from "../criminals/criminalProvider.js";
 
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
@@ -12,14 +13,14 @@ eventHub.addEventListener("click", clickEvent => {
         // need to gather the data from the form
         const author = document.querySelector("#author").value
         const text = document.querySelector("#text").value
-        const suspect = document.querySelector("#suspect").value
+        const criminalId = parseInt(document.querySelector("#suspect").value)
 
 
         // Make a new object representation of a note
         const newNote = {
             author: author,
             text: text,
-            suspect: suspect,
+            criminalId: criminalId,
             timestamp: Date.now()
         }
 
@@ -32,16 +33,28 @@ eventHub.addEventListener("click", clickEvent => {
 
 // send the data to be stored in the db, via the api
 const render = () => {
+    const criminalsCollection = useCriminals()
     contentTarget.innerHTML = `
-    <div class="noteForm">
+    <section class="noteForm">
         <input type="text" id="author" placeholder="author name">
         <textarea id="text" placeholder="note text"></textarea>
-        <input type="text" id="suspect" placeholder="suspect name">
+
+        <select id="suspect" class="dropdown">
+            <option value="0">Please select a suspect ...</option>
+            ${
+                criminalsCollection.map(
+                    (criminal) => `
+                    <option value="${ criminal.id }">${ criminal.name }</option>
+                `)
+            }
+        </select>
+
         <button id="saveNote">Save Note</button>
-    </div>
+    </section>
     `
 }
 
 export const NoteForm = () => {
-    render()
+    getCriminals()
+    .then( () => render() )
 }

@@ -3,7 +3,6 @@ import {ConvictionSelect} from './convictions/convictionSelect.js'
 import { OfficerSelect } from './officers/officerSelect.js'
 import { NoteForm } from './notes/noteForm.js'
 import { ShowNoteButton } from './notes/showNotesButton.js'
-import "./criminals/associatesComponent.js"
 import "./notes/noteList.js"
 import "./criminals/associatesComponent.js"
 
