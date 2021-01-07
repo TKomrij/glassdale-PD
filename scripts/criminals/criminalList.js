@@ -2,11 +2,53 @@ import { getCriminals, useCriminals } from './criminalProvider.js'
 import {Criminal} from './criminal.js'
 import { useConvictions } from '../convictions/convictionProvider.js'
 import { useOfficers } from '../officers/officerProvider.js'
+import {useFacilities, getFacilities} from '../facilities/facilityProvider.js'
+import {useCriminalFacilities, getCriminalFacilities} from '../facilities/criminalFacilityProvider.js'
 // import {associateAlibisHTMLgenerator} from './associatesComponent.js'
 
 
 const criminalElement = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
+
+
+let criminals = []
+let facilities = []
+let criminalFacilities = []
+
+
+export const criminalList = () => {
+  getCriminals()
+  .then(getFacilities)
+  .then(getCriminalFacilities)
+  .then(() => {
+      criminals = useCriminals()
+      facilities = useFacilities()
+      criminalFacilities = useCriminalFacilities()
+
+      render(criminals, facilities, criminalFacilities)
+  })
+}
+
+
+const render = (criminalList) => {
+  // Step 1 - Iterate all criminals
+  criminalElement.innerHTML = criminalList.map(
+      (criminalObject) => {
+          // Step 2 - Filter all relationships to get only ones for this criminal
+          const facilityRelationshipsForThisCriminal = criminalFacilities.filter(cf => cf.criminalId === criminalObject.id)
+
+          // Step 3 - Convert the relationships to facilities with map()
+          const matchingFacilities = facilityRelationshipsForThisCriminal.map(cf => {
+              const matchingFacilityObject = facilities.find(facility => facility.id === cf.facilityId)
+              return matchingFacilityObject
+          })
+
+          // Must pass the matching facilities to the Criminal component
+          return Criminal(criminalObject, matchingFacilities)
+      }
+  ).join("")
+}
+
 
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener('crimeChosen', event => {
@@ -50,22 +92,3 @@ eventHub.addEventListener("officerSelected", event => {
           }
       }
   )
-
-
-export const criminalList = () => {
-  getCriminals().then( 
-    () => {
-      let perps = useCriminals()
-            render(perps)
-      
-    }
-  )
-}
-
-const render = (criminals) => {
-  let criminalCards = []
-  for (const perp of criminals) {
-    criminalCards.push(Criminal(perp))
-  }
-  criminalElement.innerHTML = criminalCards.join("")
-}

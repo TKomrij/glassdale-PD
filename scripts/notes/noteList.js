@@ -40,7 +40,7 @@ const render = (noteArray, criminals) => {
                 }
             )
             
-            note.criminalName = associatedCriminal.name
+            note.criminalId = associatedCriminal.name
 
             return NoteHTMLConverter(note)
         }).join("")
