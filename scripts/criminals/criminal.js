@@ -1,5 +1,5 @@
 const eventHub = document.querySelector(".container");
-const targetListContainer = document.querySelector(".dialogue-container");
+const targetListContainer = document.querySelector(".criminalsContainer");
 
 
 export const Criminal = (criminal, facilities) => {
@@ -34,7 +34,7 @@ export const Criminal = (criminal, facilities) => {
 targetListContainer.addEventListener("click", e => {
       if (e.target.id.startsWith("associates--")) {
           const [prefix, chosenCriminalId] = e.target.id.split("--");
-          const openDialogBox = new CustomEvent("assiciatesButtonClicked", {
+          const openDialogBox = new CustomEvent("associatesButtonClicked", {
               detail: {
                   criminal: chosenCriminalId
               }
