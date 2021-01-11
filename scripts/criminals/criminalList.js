@@ -92,3 +92,32 @@ eventHub.addEventListener("officerSelected", event => {
           }
       }
   )
+
+
+//   Show witness statements in place of criminals list
+
+// Which components do you need to create for this feature?
+    // provider -- get witnesses and add them to the app state. make app state available with a useWitnesses function
+    // HTML converter -- represent a JS object as HTML
+    // button with a "click" event listener on it that generates a custom event
+    // list component for creating 'cards' using the witness data. Listens for the custom event that signals the show witnesses button was clicked.
+
+
+// Where is the data coming from in the API? Do you need a new provider?
+    // from the glassdale API, and yes!
+
+// Which component is "talking" (i.e. dispatches a custom event) when a user performs an action?
+    // the button component
+
+// Which component would listen and react to that custom event?
+    // the list component
+
+// Does data need to be sent along with the message?
+    // It depends
+
+// Which DOM element would contain the list of witness statements? Do you need a new one, or can they go in an existing one?
+    // 1) Just put it in the same container as the criminal list 
+    // 2) Put the witnesses in their own container and just hide the criminals
+
+    // button should toggle between showing criminals and witnesses
+    // can we change the button text depending on the state of the displayed data
